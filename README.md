@@ -39,23 +39,23 @@ In-Depth instructions will be added and modified here.
 		[2014-10-17 M.BENITEZMEISS] hasAttribute is not "Quirks Mode" IE9 compatible, had to change method.
 		
 	ATTRIBUTES:
-		e_default	: the default value of this option. Example: select menu 
-				  has a default option of 'SELECT'.			
-		e_name		: the display name of this option, for error alert. Example, 
-				  your form calls the field "Pet Name", the e_name will be 
-				  "Pet Name".
-		e_require	: whether the field is required or not, values are true/false 
-				  converted to boolean in code.
-		e_invalid	: a list of invalid options for this field, comma seperated. 
-				  Example: "Cat,Dog,Bird,Fish,Reptile,Other".
-		e_min		: the minimum value (int) for this element, converted to 
-				  number in code.
-		e_max		: the maximum value (int) for this element, converted to 
-				  number in code.
-		e_list		: a list of valid options for this element (cannot combine with 
-				  string type).  Example: "Cat,Dog,Bird,Fish,Reptile,Other".
-		e_length	: the minimum string length allowed, converted to number in code.
-		e_confirm	: whether to display a confirm, values are true/false - converted 
-				  to boolean in code.
-		e_confirmMsg	: the custom confirm message, can be an empty string.
+		e_default	the default value of this option. Example: select menu 
+				has a default option of 'SELECT'.			
+		e_name		the display name of this option, for error alert. Example, 
+				your form calls the field "Pet Name", the e_name will be 
+				"Pet Name".
+		e_require	whether the field is required or not, values are true/false 
+				converted to boolean in code.
+		e_invalid	a list of invalid options for this field, comma seperated. 
+				Example: "Cat,Dog,Bird,Fish,Reptile,Other".
+		e_min		the minimum value (int) for this element, converted to 
+				number in code.
+		e_max		the maximum value (int) for this element, converted to 
+				number in code.
+		e_list		a list of valid options for this element (cannot combine with 
+				string type).  Example: "Cat,Dog,Bird,Fish,Reptile,Other".
+		e_length	the minimum string length allowed, converted to number in code.
+		e_confirm	whether to display a confirm, values are true/false - converted 
+				to boolean in code.
+		e_confirmMsg	the custom confirm message, can be an empty string.
 

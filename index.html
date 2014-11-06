@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Attry-Me by BitBullLLC</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Attry-Me</h1>
+        <p>A JavaScript Form Validation plugin that validates using custom attributes so you don&#39;t have to write a single line of JavaScript!</p>
+        <p class="view"><a href="https://github.com/BitBullLLC/js">View the Project on GitHub <small>BitBullLLC/js</small></a></p>
+        <ul>
+          <li><a href="https://github.com/BitBullLLC/js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/BitBullLLC/js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/BitBullLLC/js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="attry-me" class="anchor" href="#attry-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>Attry-Me</h1>
+
+<p>Attry-Me uses our specified custom attributes, which the user will define on their form elements. The function pulls these custom attributes and uses their values to validate the form, element by element, and returns true/false. You include the file at the top of your page, and you just add the custom elements to your form, and plop the function where you want it to validate (e.g. on the form submit, or submit button click).</p>
+
+<p>Example of a form element with the Attry-Me custom attributes:</p>
+
+<blockquote>
+<p><code>Name: &lt;input type='text' id='attry-me-sample-text' value='Enter your Name' length='30' e_required='true' e_default='Enter your Name' e_type='string'&gt;</code></p>
+
+<p><code>Age: &lt;input type='text' id='attry-me-sample-number' value='0' length='10' e_required='false' e_default='0' e_type='rangebetween' e_max='99' e_min='18'&gt;</code></p>
+</blockquote>
+
+<p>Then you simple add the function and pass in the form name via the submit button or the form element:</p>
+
+<blockquote>
+<p><code>&lt;form name='attry-me-sample-form' id='attry-me-sample-form' action'/sample-file.html' method='post' onsubmit='return AttryMe("attry-me-sample-form");'&gt;</code></p>
+
+<p><code>&lt;input type='submit' id='attry-me-submit-btn' value='Submit' onclick='return AttryMe("attry-me-sample-form");'&gt;</code></p>
+</blockquote>
+
+<p>The code does the rest!</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/BitBullLLC">BitBullLLC</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>

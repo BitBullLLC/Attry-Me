@@ -36,7 +36,7 @@
 		e_confirmMsg	: the custom confirm message, can be an empty string.
 */
 // JavaScript Document
-function validateForm(formName)
+function AttryMe(formName)
 {	// set flags to true/false
 	var isValid 		= false; // set valid to false by default.
 	var isModal			= false; // set this to "true" if you want to use your own Modal Window plugin.

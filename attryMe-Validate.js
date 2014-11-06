@@ -33,13 +33,13 @@
 		e_list			: a list of valid options for this element (cannot combine with string type).  Example: "Houseboat,Motorboat,Sailboat,Catamaran,Other".
 		e_length		: the minimum string length allowed, converted to number in code.
 		e_confirm		: whether to display a confirm, values are true/false - converted to boolean in code.
-		e_confirmMsg	: the custom confirm message, can be an empty string.
+		e_confirmMsg		: the custom confirm message, can be an empty string.
 */
 // JavaScript Document
 function AttryMe(formName)
 {	// set flags to true/false
 	var isValid 		= false; // set valid to false by default.
-	var isModal			= false; // set this to "true" if you want to use your own Modal Window plugin.
+	var isModal		= false; // set this to "true" if you want to use your own Modal Window plugin.
 	// set error message defaults
 	var errorMessages	= ''; 	// set error messages to empty string by default, appends values later, null value will throw error.
 	// set arrays to defaults
@@ -63,12 +63,12 @@ function AttryMe(formName)
 	for (var i=0; i<form.elements.length; i++)
 	{	// elements are updated/reset every loop.
 		var element 		= form.elements[i];	// set the element to current element.
-		var id				= element.id;		// set the id of the element.
-		var attr 			= new Array();		// set the attribute array will be populated later on (associative array).
-		var confirmResults	= false;			// set the default to false.
-		var isDefaultValue	= false;			// set the default to false.
-		var isEmptyValue	= false;			// set the default to false.
-		var isChecked		= false;			// set the default to false.
+		var id			= element.id;		// set the id of the element.
+		var attr 		= new Array();		// set the attribute array will be populated later on (associative array).
+		var confirmResults	= false;		// set the default to false.
+		var isDefaultValue	= false;		// set the default to false.
+		var isEmptyValue	= false;		// set the default to false.
+		var isChecked		= false;		// set the default to false.
 		
 		// set the attribute to the element's value (string format).
 		attr['e_value']		= (''+document.getElementById(id).value).replace(trimRegex,'');
@@ -130,6 +130,7 @@ function AttryMe(formName)
 				break;
 				
 				case "date":
+					// test the date provided against the regular expression pattern.
 					if(!dateRegEx.test(attr['e_value']))
 					{	// if the test fails, add error to the array
 						allErrors.push(attr['e_name']+" contains an invalid format. Must be a date in MM/DD/YYYY, your value is: "+attr['e_value']);
@@ -137,6 +138,7 @@ function AttryMe(formName)
 				break;
 				
 				case "email":
+					// test the email against the regular expression pattern.
 					if(!emailRegEx.test(attr['e_value']))
 					{	// if the test fails, add error to the array
 						allErrors.push(attr['e_name']+" contains an invalid format. Must be a valid email address, your value is: "+attr['e_value']);
@@ -144,6 +146,7 @@ function AttryMe(formName)
 				break;
 				
 				case "phone":
+					// test the phone number against the regular expression pattern
 					if(!phoneRegEx.test(attr['e_value']))
 					{	// if the test fails, add error to the array
 						allErrors.push(attr['e_name']+" contains an invalid format. Must be a valid phone number from 7-10 digits, your value is: "+attr['e_value']);
@@ -151,6 +154,7 @@ function AttryMe(formName)
 				break;
 				
 				case "zip":
+					// test the zip code against the regular expression pattern
 					if(!usZipRegEx.test(attr['e_value']))
 					{	// if the test fails, add error to the array
 						allErrors.push(attr['e_name']+" contains an invalid format. Must be a valid 5 or 9 digit US Zip Code, your value is: "+attr['e_value']);
@@ -158,6 +162,7 @@ function AttryMe(formName)
 				break;
 				
 				case "rangemax":
+					// check to see if the value is less than or equal to the max allowed number.
 					if(attr['e_value'] >= attr['e_max'])
 					{	// if the test fails, add error to the array
 						allErrors.push(attr['e_name']+" must not exceed "+attr['e_max']+", your value is: "+attr['e_value']);
@@ -165,6 +170,7 @@ function AttryMe(formName)
 				break;
 				
 				case "rangemin":
+					// check to see if the value is more than or equal to the minimum allowed number.
 					if(attr['e_value'] <= attr['e_min'])
 					{	// if the test fails, add error to the array
 						allErrors.push(attr['e_name']+" must be "+attr['e_min']+" or greater, your value is: "+attr['e_value']);
@@ -172,6 +178,7 @@ function AttryMe(formName)
 				break;
 				
 				case "rangebetween":
+					// check to make sure the values are equal to or between the min and max allowed numbers.
 					if(attr['e_value'] <= attr['e_min'] || attr['e_value'] >= attr['e_max'])
 					{	// if the test fails, add error to the array
 						allErrors.push(attr['e_name']+" must be between "+attr['e_min']+" and "+attr['e_max']+", your value is: "+attr['e_value']);
@@ -179,6 +186,7 @@ function AttryMe(formName)
 				break;
 				
 				case "ipaddress":
+					// check to make sure the value matches the regular expression pattern.
 					if(!ipAddRegEx.test(attr['e_value']))
 					{	// if the test fails, add error to the array
 						allErrors.push(attr['e_name']+" contains an invalid format. Must be a valid IP Address, your value is: "+attr['e_value']);
@@ -189,11 +197,14 @@ function AttryMe(formName)
 				
 			}
 		}
+		
+		// if the attribute e_length is not false, then compare the value's length (string/array/etc) with the defined e_length value.
 		if(attr['e_length'] != false && attr['e_value'].length < attr['e_length'])
 		{	// if the test fails, add error to the array
 			allErrors.push(attr['e_name']+" must contain "+attr['e_length']+" or more characters. Your value is: "+attr['e_value']);
 		}
 		
+		// if the attribute e_invalid has a length greater than 0, than validate against the invalid values.
 		if(attr['e_invalid'].length > 0)
 		{
 			if(attr['e_invalid'].indexOf(attr['e_value']) > -1)
@@ -202,6 +213,7 @@ function AttryMe(formName)
 			}
 		}
 		
+		// if the attribute e_list has a length greater than 0, and the e_type is not a strong, validate against the acceptable values.
 		if(attr['e_list'].length > 0 && attr['e_type'] != "string")
 		{
 			if(attr['e_list'].indexOf(attr['e_value']) == -1)
@@ -210,6 +222,7 @@ function AttryMe(formName)
 			}
 		}
 		
+		// if the attribute e_confirm is true then run the confirm function - this is very much in a beta mode, please report any bugs and fixes you used.
 		if(attr['e_confirm'])
 		{	// if true, trigger confirm dialog box.
 			if(!attr['e_confirmMsg']){attr['e_confirmMsg']='';} // if the confirm message is false, default the value to an empty string
@@ -240,6 +253,7 @@ function AttryMe(formName)
 	return isValid;
 }
 
+// this function validates the check boxes and radio buttons. This is very much in beta, please report any bugs and any fixes you used.
 function validateBoxes(element)
 {	// subfunction used to loop through any checkboxes/radio buttons to validate that at least one is checked.
 	var isChecked = false; // set isChecked to false by default
@@ -254,6 +268,7 @@ function validateBoxes(element)
 	return isChecked;	
 }
 
+// build the error message and format it for the method (modal/alert)
 function buildErrorMessage(errors, isModal)
 {	// subfunction used to generate the text for errors based on the array that's passed in, and the modal flag.
 	var text = ""; // build empty string text variable.
@@ -276,6 +291,7 @@ function buildErrorMessage(errors, isModal)
 	return text;	
 }
 
+// trigger the confirm box -- this is also very much in beta, if you find any bugs, please report them with any fixes you used.
 function confirmBox(message, isModal)
 {	// subfunction used to generate the confirm box based on the modal flag.
 	var confirmResults = false;
@@ -297,6 +313,7 @@ function confirmBox(message, isModal)
 	return confirmResults;
 }
 
+// trigger the alert box -- this is very much in beta, if you find any bugs, please report them along with any fixes used.
 function alertBox(message, isModal)
 {	// subfunction used to generate the alert box based on the modal flag.
 	var messageHdr = "The following fields need to be corrected, in order to submit this form:";
